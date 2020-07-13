@@ -35,6 +35,23 @@ DEF := \
 -D_PROJECT_NAME_="\"$(PROJECT_NAME)\"" \
 -D_PROJECT_VERSION_="\"$(PROJECT_VERSION)\""
 
+# GTK
+
+GTK_VERSION := \
+3.0
+
+GTK_DIR := \
+$(ROOT_DIR)/usr/x86_64-w64-mingw32/sys-root/mingw
+
+GTK_INC := \
+-I"$(GTK_DIR)/include/atk-1.0" \
+-I"$(GTK_DIR)/include/cairo" \
+-I"$(GTK_DIR)/include/gdk-pixbuf-2.0" \
+-I"$(GTK_DIR)/include/glib-2.0" \
+-I"$(GTK_DIR)/include/gtk-3.0" \
+-I"$(GTK_DIR)/include/pango-1.0" \
+-I"$(GTK_DIR)/lib/glib-2.0/include"
+
 # Executáveis
 
 CC := \
@@ -58,13 +75,24 @@ endif
 
 CFLAGS += \
 $(DEF) \
+$(GTK_INC) \
 -Wall \
 -Wextra
 
 # Opções de vinculação
 
 LDFLAGS += \
--Wl,-Map=$(BUILD_DIR)/$(PROJECT_NAME).map
+-L$(GTK_DIR)/lib
+
+LDFLAGS += \
+-Wl,-Map=$(BUILD_DIR)/$(PROJECT_NAME).map \
+-Wl,-rpath-link=$(GTK_DIR)/lib
+
+LDFLAGS += \
+-l:libgio-2.0.dll.a \
+-l:libglib-2.0.dll.a \
+-l:libgobject-2.0.dll.a \
+-l:libgtk-3.dll.a
 
 # Objetos de saída
 

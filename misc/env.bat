@@ -16,6 +16,7 @@ C:\cygwin64
 
 SET PATH=^
 %ROOT_DIR%\bin;^
+%ROOT_DIR%\usr\x86_64-w64-mingw32\sys-root\mingw\bin;^
 C:\Program Files\Git\bin;
 
 EXIT /B 0
