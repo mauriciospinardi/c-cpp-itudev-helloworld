@@ -20,7 +20,7 @@ CFG_NAME := \
 $(subst ,release,$(CFG_NAME))
 
 PROJECT_NAME := \
-gtk-hello-world
+helloworld
 
 PROJECT_VERSION := \
 01.00.00
