@@ -58,10 +58,10 @@ int main(int argc, char *argv[])
 /******************/
 
 /**
- * @brief 
+ * @brief Cria e ativa uma nova janela.
  * 
- * @param application 
- * @param user_data 
+ * @param application [in] Identificador da aplicação
+ * @param user_data [in] Dados privados
  */
 static void
 activate(GtkApplication *application, gpointer user_data)
@@ -85,12 +85,12 @@ activate(GtkApplication *application, gpointer user_data)
 }
 
 /**
- * @brief 
+ * @brief Função de retorno para monitoramento de eventos.
  * 
- * @param event_box 
- * @param event 
- * @param data 
- * @return gboolean 
+ * @param event_box [in] GtkWidget
+ * @param event [in] Evento
+ * @param data [in] Dados privados
+ * @return gboolean TRUE se o evento foi tratado ou FALSE, caso contrário.
  */
 static gboolean
 button_press_callback(GtkWidget *event_box, GdkEventButton *event, gpointer data)
@@ -104,7 +104,7 @@ button_press_callback(GtkWidget *event_box, GdkEventButton *event, gpointer data
 }
 
 /**
- * @brief 
+ * @brief Carrega e atribui um arquivo de imagem para um monitor de eventos.
  * 
  * @return GtkWidget* 
  */
