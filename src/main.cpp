@@ -198,7 +198,7 @@ itudev_start(void)
 
     status = itudev_end();
 
-    ITUDEV_TRACE("itudev_end() [%d]", status);
+    ITUDEV_TRACE("itudev_end() [%d] (platform exiting point...)", status);
 
     exit(EXIT_SUCCESS);
 }
