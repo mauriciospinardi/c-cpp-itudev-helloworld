@@ -10,33 +10,15 @@
          "group": "build"
       },
       {
-         "label": "build-release",
-         "type": "shell",
-         "command": "& make & exit",
-         "group": "build"
-      },
-      {
          "label": "clean-all",
          "type": "shell",
          "command": "& make clean & exit",
          "group": "build"
       },
       {
-         "label": "dist-release",
-         "type": "shell",
-         "command": "& make clean all dist & exit",
-         "group": "build",
-      },
-      {
          "label": "rebuild-debug",
          "type": "shell",
          "command": "& make -B CFG_NAME=debug & exit",
-         "group": "build"
-      },
-      {
-         "label": "rebuild-release",
-         "type": "shell",
-         "command": "& make -B & exit",
          "group": "build"
       }
    ],
