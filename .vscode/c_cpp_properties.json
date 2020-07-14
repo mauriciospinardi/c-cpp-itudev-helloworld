@@ -4,7 +4,7 @@
    },
    "configurations": [
       {
-         "name": "gtk-hello-world",
+         "name": "itudev-helloworld",
          "compilerPath": "${toolsFolder}/bin",
          "intelliSenseMode": "gcc-x64",
          "includePath": [

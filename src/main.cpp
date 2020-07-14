@@ -11,6 +11,16 @@
 
 #include <gtk/gtkx.h>
 
+/**********/
+/* Macros */
+/**********/
+
+#ifdef _DEBUG_
+#define ITUDEV_TRACE(...) g_print("\r\n%19.19s #%4.4d %s::", __FILE__, __LINE__, __FUNCTION__); g_print(__VA_ARGS__)
+#else
+#define ITUDEV_TRACE(...) /* NULL */
+#endif /* #ifdef _DEBUG_ */
+
 /*********************/
 /* Vairáveis globais */
 /*********************/
@@ -60,8 +70,6 @@ int main(int argc, char *argv[])    /* Para pensar:
                                      * 
                                      * - Será main(...) o melhor ponto de
                                      * entrada para a aplicação?
-                                     * 
-                                     * - itudev_main(...)
                                      *
                                      */
 {
@@ -72,25 +80,25 @@ int main(int argc, char *argv[])    /* Para pensar:
 
     ret = itudev_start();
 
-    g_print("\r\n%s::%s [%d]", __FUNCTION__, "itudev_start()", ret);
+    ITUDEV_TRACE("itudev_start() [%d]", ret);
 
     if (ret)
     {
         exit(EXIT_FAILURE);
     }
 
-    ret = itudev_helloworld();      /* Para pensar:
-                                     *
-                                     * - itudev_file_load(...);
-                                     * - itudev_file_size(...);
-                                     * - itudev_image_draw(...);
-                                     * - itudev_image_flush(...);
-                                     * 
-                                     * - itudev_...
-                                     * 
-                                     */
+    ret = itudev_helloworld();  /* Para pensar:
+                                 *
+                                 * - itudev_file_load(...);
+                                 * - itudev_file_size(...);
+                                 * - itudev_image_draw(...);
+                                 * - itudev_image_flush(...);
+                                 * 
+                                 * - itudev_...
+                                 * 
+                                 */
 
-    g_print("\r\n%s::%s [%d]", __FUNCTION__, "itudev_helloworld()", ret);
+    ITUDEV_TRACE("itudev_helloworld() [%d]", ret);
 
     if (ret)
     {
@@ -99,7 +107,7 @@ int main(int argc, char *argv[])    /* Para pensar:
 
     ret = itudev_end();
 
-    g_print("\r\n%s::%s [%d]", __FUNCTION__, "itudev_end()", ret);
+    ITUDEV_TRACE("itudev_end() [%d]", ret);
 
     return (ret) ? EXIT_FAILURE : EXIT_SUCCESS;
 }
@@ -123,7 +131,7 @@ itudev_end(void)
         application = NULL;
     }
 
-    g_print("\r\n%s::%s [%lu]", __FUNCTION__, "application", (long unsigned int) application);
+    ITUDEV_TRACE("application [%lu]", (long unsigned int) application);
 
     return 0;
 }
@@ -140,7 +148,7 @@ itudev_helloworld(void)
 
     event_box = create_image();
 
-    g_print("\r\n%s::%s [%lu]", __FUNCTION__, "create_image()", (long unsigned int) event_box);
+    ITUDEV_TRACE("create_image() [%lu]", (long unsigned int) event_box);
 
     gtk_container_add(GTK_CONTAINER(window), event_box);
 
@@ -154,7 +162,7 @@ itudev_helloworld(void)
 }
 
 /**
- * @brief Inicializa o motor de renderização (e eventos) da plataforma.
+ * @brief Inicializa o motor de renderização da plataforma.
  *
  * @return int -1 para erros; 0 para sucesso
  */
@@ -168,7 +176,7 @@ itudev_start(void)
 
     application = gtk_application_new(NULL, G_APPLICATION_FLAGS_NONE);
 
-    g_print("\r\n%s::%s [%lu]", __FUNCTION__, "gtk_application_new()", (long unsigned int) application);
+    ITUDEV_TRACE("gtk_application_new() [%lu]", (long unsigned int) application);
 
     status = (!application) ? -1 : 1;
 
@@ -181,7 +189,7 @@ itudev_start(void)
 
     status = g_application_run(G_APPLICATION(application), 0, NULL);
 
-    g_print("\r\n%s::%s [%d]", __FUNCTION__, "g_application_run()", status);
+    ITUDEV_TRACE("g_application_run() [%d]", status);
 
     if (status)
     {
@@ -190,7 +198,7 @@ itudev_start(void)
 
     status = itudev_end();
 
-    g_print("\r\n%s::%s [%d]", __FUNCTION__, "itudev_end()", status);
+    ITUDEV_TRACE("itudev_end() [%d]", status);
 
     exit(EXIT_SUCCESS);
 }
@@ -208,7 +216,7 @@ activate(GtkApplication *application, gpointer user_data)
 
     window = gtk_application_window_new(application);
 
-    g_print("\r\n%s::%s [%lu]", __FUNCTION__, "gtk_application_window_new()", (long unsigned int) window);
+    ITUDEV_TRACE("gtk_application_window_new() [%lu]", (long unsigned int) window);
 
     main(0, NULL);
 }
@@ -227,14 +235,15 @@ button_press_callback(GtkWidget *event_box, GdkEventButton *event, gpointer data
     (void) event_box;
     (void) data;
 
-    g_print("\r\n%s::%s %f,%f", __FUNCTION__, "Event box clicked at coordinates", event->x, event->y);
+    ITUDEV_TRACE("event->x [%f]", event->x);
+    ITUDEV_TRACE("event->y [%f]", event->y);
 
     return TRUE;
 }
 
 /**
- * @brief Carrega e atribui um arquivo de imagem para um monitor de eventos.
- * 
+ * @brief Carrega e envia um arquivo de imagem para o motor de renderização.
+ *
  * @return GtkWidget* 
  */
 static GtkWidget *
@@ -245,11 +254,11 @@ create_image(void)
 
     image = gtk_image_new_from_file("misc/200713153459.png");
 
-    g_print("\r\n%s::%s [%lu]", __FUNCTION__, "gtk_image_new_from_file()", (long unsigned int) image);
+    ITUDEV_TRACE("gtk_image_new_from_file() [%lu]", (long unsigned int) image);
 
     event_box = gtk_event_box_new();
 
-    g_print("\r\n%s::%s [%lu]", __FUNCTION__, "gtk_event_box_new()", (long unsigned int) event_box);
+    ITUDEV_TRACE("gtk_event_box_new() [%lu]", (long unsigned int) event_box);
 
     gtk_container_add(GTK_CONTAINER(event_box), image);
 
