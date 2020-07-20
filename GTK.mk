@@ -1,9 +1,9 @@
  #
- # @file Makefile
+ # @file GTK.mk
  # @author Maurício Spinardi (mauricio.spinardi@setis.com.br)
  # @platform cygwin64
  # @brief Makefile
- # @date 2020-07-13
+ # @date 2020-07-20
  #
  #
 
@@ -20,16 +20,19 @@ CFG_NAME := \
 $(subst ,release,$(CFG_NAME))
 
 PROJECT_NAME := \
-helloworld
+libitudev
 
 PROJECT_VERSION := \
 01.00.00
 
 BIN_DIR := \
-bin/$(CFG_NAME)
+lib/$(CFG_NAME)
 
 BUILD_DIR := \
-build/$(CFG_NAME)
+lib/$(CFG_NAME)/build
+
+SRC_DIR := \
+src/gtk
 
 DEF := \
 -D_PROJECT_NAME_="\"$(PROJECT_NAME)\"" \
@@ -52,18 +55,10 @@ GTK_INC := \
 -isystem "$(GTK_DIR)/include/pango-1.0" \
 -isystem "$(GTK_DIR)/lib/glib-2.0/include"
 
-# ItuDevelopers
-
-ITUDEV_VERSION := \
-01.00.00
-
-ITUDEV_DIR := \
-lib/$(CFG_NAME)
-
-ITUDEV_INC := \
--I"include"
-
 # Executáveis
+
+AR := \
+ar
 
 CC := \
 gcc
@@ -87,15 +82,16 @@ endif
 CFLAGS += \
 $(DEF) \
 $(GTK_INC) \
-$(ITUDEV_INC) \
+-I"include" \
 -Wall \
--Wextra
+-Wextra \
+-fPIC \
+-fvisibility=hidden
 
 # Opções de vinculação
 
 LDFLAGS += \
--L$(GTK_DIR)/lib \
--L$(ITUDEV_DIR)
+-L$(GTK_DIR)/lib
 
 LDFLAGS += \
 -Wl,-Map=$(BUILD_DIR)/$(PROJECT_NAME).map \
@@ -105,44 +101,37 @@ LDFLAGS += \
 -l:libgio-2.0.dll.a \
 -l:libglib-2.0.dll.a \
 -l:libgobject-2.0.dll.a \
--l:libgtk-3.dll.a \
--l:libitudev.a
+-l:libgtk-3.dll.a
 
 # Objetos de saída
 
 OBJS := \
-$(patsubst src/%,$(BUILD_DIR)/%.o,$(wildcard src/*.c*))
+$(patsubst $(SRC_DIR)/%,$(BUILD_DIR)/%.o,$(wildcard $(SRC_DIR)/*.c*))
 
 # Regras de compilação e instalação
 
 .PHONY: all
-all: prebuild
-	@$(MAKE) --no-print-directory -f GTK.mk
-	@$(MAKE) --no-print-directory -j4 -Orecurse build
+all:
+	@$(MAKE) -f GTK.mk --no-print-directory -j4 -Orecurse prebuild build
 
 .PHONY: build
 build: prebuild $(OBJS)
-	@echo - linking with g++...
-	@$(CPP) $(OBJS) -Wl,--start-group $(LDFLAGS) -Wl,--end-group -o $(BIN_DIR)/$(PROJECT_NAME).exe
-	@echo -n Finished building application at & date "+ %F %T"
+	@echo Generating static $(PROJECT_NAME) library...
+	@$(AR) rc $(BIN_DIR)/$(PROJECT_NAME).a $(OBJS)
 
-$(BUILD_DIR)/%.c.o: src/%.c
+$(BUILD_DIR)/%.c.o: $(SRC_DIR)/%.c
 	@echo - compiling with gcc $<...
 	@$(CC) -std=c99 $(CFLAGS) -c $< -o $@
 
-$(BUILD_DIR)/%.cpp.o: src/%.cpp
+$(BUILD_DIR)/%.cpp.o: $(SRC_DIR)/%.cpp
 	@echo - compiling with g++ $<...
 	@$(CPP) -std=c++11 $(CFLAGS) -c $< -o $@
 
 .PHONY: clean
 clean:
-	@echo Cleaning...
-	@$(MAKE) --no-print-directory -f GTK.mk clean
-	@rm -fr bin
-	@rm -fr build
+	@rm -fr lib
 
 .PHONY: prebuild
 prebuild:
-	@echo Starting build $(PROJECT_NAME) in $(CFG_NAME) mode...
 	@mkdir -p $(BIN_DIR)
 	@mkdir -p $(BUILD_DIR)

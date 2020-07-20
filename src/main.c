@@ -7,7 +7,7 @@
  * 
  */
 
-#include "itudev.h"
+#include "itudev/itudev.h"
 
 #include <stdio.h>
 #include <stdlib.h>

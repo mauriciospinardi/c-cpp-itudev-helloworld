@@ -7,6 +7,9 @@
  * 
  */
 
+#ifndef _ITUDEV_H_INCLUDED_
+#define _ITUDEV_H_INCLUDED_
+
 /**********/
 /* Macros */
 /**********/
@@ -53,3 +56,5 @@ itudev_start(void);
  */
 extern void
 itudev_log(const char *date, const char *time, const char *file, const int line, const char *function, const char *format, ...);
+
+#endif /* #ifndef _ITUDEV_H_INCLUDED_ */

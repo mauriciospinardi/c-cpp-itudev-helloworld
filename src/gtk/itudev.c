@@ -7,7 +7,7 @@
  * 
  */
 
-#include "itudev.h"
+#include "itudev.h" /* Definições privadas */
 
 #include <semaphore.h>
 #include <stdarg.h>
@@ -50,7 +50,7 @@ create_image(char *file);
  * 
  * @return int -1 para erros; 0 para sucesso
  */
-extern int
+extern int LIB_PUBLIC
 itudev_end(void)
 {
     if (application && !status)
@@ -70,7 +70,7 @@ itudev_end(void)
  * 
  * @return int -1 para erros; 0 para sucesso
  */
-extern int
+extern int LIB_PUBLIC
 itudev_image_flush(char *file)
 {
     GtkWidget *event_box;
@@ -100,7 +100,7 @@ itudev_image_flush(char *file)
  *
  * @return int -1 para erros; 0 para sucesso
  */
-extern int
+extern int LIB_PUBLIC
 itudev_start(void)
 {
     if (status > 0)
@@ -143,7 +143,7 @@ itudev_start(void)
  * @param format [in] autodescritivo
  * @param ... [in] número variável de argumentos
  */
-extern void
+extern void LIB_PUBLIC
 itudev_log(const char *date, const char *time, const char *file, const int line, const char *function, const char *format, ...)
 {
     char log[256];
