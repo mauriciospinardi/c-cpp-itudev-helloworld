@@ -21,6 +21,12 @@
 #define ITUDEV_TRACE(...) /* NULL */
 #endif /* #ifdef _DEBUG_ */
 
+/**************/
+/* Constantes */
+/**************/
+
+static const char hello_world[] = "misc/200713153459.png";
+
 /*********************/
 /* Vairáveis globais */
 /*********************/
@@ -39,7 +45,7 @@ static int
 itudev_end(void);
 
 static int
-itudev_helloworld(void);
+itudev_image_flush(char *file);
 
 static int
 itudev_start(void);
@@ -51,7 +57,7 @@ static gboolean
 button_press_callback(GtkWidget *event_box, GdkEventButton *event, gpointer data);
 
 static GtkWidget *
-create_image(void);
+create_image(char *file);
 
 /**************************/
 /* Funções externalizadas */
@@ -69,7 +75,8 @@ create_image(void);
 int main(int argc, char *argv[])    /* Para pensar:
                                      * 
                                      * - Será main(...) o melhor ponto de
-                                     * entrada para a aplicação?
+                                     * entrada para uma aplicação
+                                     * multiplataforma?
                                      *
                                      */
 {
@@ -87,16 +94,17 @@ int main(int argc, char *argv[])    /* Para pensar:
         exit(EXIT_FAILURE);
     }
 
-    ret = itudev_helloworld();  /* Para pensar:
-                                 *
-                                 * - itudev_file_load(...);
-                                 * - itudev_file_size(...);
-                                 * - itudev_image_draw(...);
-                                 * - itudev_image_flush(...);
-                                 * 
-                                 * - itudev_...
-                                 * 
-                                 */
+    ret = itudev_image_flush((char *) hello_world);
+    
+    /* Para pensar:
+     *
+     * - itudev_file_load(...);
+     * - itudev_file_size(...);
+     * - itudev_image_crop(...);
+     * - itudev_image_draw(...);
+     * - itudev_...
+     * 
+     */
 
     ITUDEV_TRACE("itudev_helloworld() [%d]", ret);
 
@@ -142,11 +150,16 @@ itudev_end(void)
  * @return int -1 para erros; 0 para sucesso
  */
 static int
-itudev_helloworld(void)
+itudev_image_flush(char *file)
 {
     GtkWidget *event_box;
 
-    event_box = create_image();
+    if (!file)
+    {
+        return -1;
+    }
+
+    event_box = create_image(file);
 
     ITUDEV_TRACE("create_image() [%lu]", (long unsigned int) event_box);
 
@@ -247,12 +260,12 @@ button_press_callback(GtkWidget *event_box, GdkEventButton *event, gpointer data
  * @return GtkWidget* 
  */
 static GtkWidget *
-create_image(void)
+create_image(char *file)
 {
     GtkWidget *event_box;
     GtkWidget *image;
 
-    image = gtk_image_new_from_file("misc/200713153459.png");
+    image = gtk_image_new_from_file(file);
 
     ITUDEV_TRACE("gtk_image_new_from_file() [%lu]", (long unsigned int) image);
 
