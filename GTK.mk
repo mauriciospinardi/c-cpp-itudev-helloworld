@@ -133,5 +133,6 @@ clean:
 
 .PHONY: prebuild
 prebuild:
+	@echo Starting build $(PROJECT_NAME) in $(CFG_NAME) mode...
 	@mkdir -p $(BIN_DIR)
 	@mkdir -p $(BUILD_DIR)

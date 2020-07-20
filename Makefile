@@ -116,7 +116,7 @@ $(patsubst src/%,$(BUILD_DIR)/%.o,$(wildcard src/*.c*))
 # Regras de compilação e instalação
 
 .PHONY: all
-all: prebuild
+all:
 	@$(MAKE) --no-print-directory -f GTK.mk
 	@$(MAKE) --no-print-directory -j4 -Orecurse build
 
