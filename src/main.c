@@ -16,7 +16,7 @@
 /* Constantes */
 /**************/
 
-static const char hello_world[] = "misc/200713153459.png";
+static const char hello_world[] = "misc/200720182012.png";
 
 /**************************/
 /* Funções externalizadas */
