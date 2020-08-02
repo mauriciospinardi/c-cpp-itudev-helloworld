@@ -1,19 +1,16 @@
 {
-   "env": {
-      "toolsFolder": "C:/cygwin64"
-   },
    "configurations": [
       {
-         "name": "itudev-helloworld",
-         "compilerPath": "${toolsFolder}/bin",
+         "name": "Win32",
+         "compilerPath": "C:/cygwin64/bin/gcc.exe",
          "intelliSenseMode": "gcc-x64",
          "includePath": [
-            "${toolsFolder}/**",
+            "C:/cygwin64/**",
             "${workspaceFolder}/**"
          ],
          "defines": [
             "_DEBUG_",
-            "_PROJECT_NAME_=\"packager\"",
+            "_PROJECT_NAME_=\"helloworld\"",
             "_PROJECT_VERSION_=\"VV.vv.bb\""
          ],
          "cStandard": "c99",
