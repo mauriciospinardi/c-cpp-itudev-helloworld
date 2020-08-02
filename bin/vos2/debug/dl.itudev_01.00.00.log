@@ -1,0 +1,12 @@
+<46> Aug  2 19:38:01 Raptor syslog.info syslogd started - BusyBox v1.22.0
+<46> Aug  2 19:38:01 Raptor syslog.info config monitor started
+<14> Aug  2 19:38:04 Raptor user.info itudev.exe: buzz_get_device_name: found buzzer /dev/input/event0 -> pwm-beeper
+<15> Aug  2 19:38:04 Raptor user.debug itudev.exe: [ITUDEV]^M src/vos2/itudev.cpp #0112 itudev_start::vfisyspm::sys_Init() [OK]
+<15> Aug  2 19:38:04 Raptor user.debug itudev.exe[5249]: [ITUDEV]^M src/vos2/itudev.cpp #0125 itudev_start::vfigui::uiLayout() [OK]
+<15> Aug  2 19:38:04 Raptor user.debug itudev.exe[5249]: [ITUDEV]^M src/vos2/itudev.cpp #0132 itudev_start::vfigui::uiCanvas() [OK]
+<15> Aug  2 19:38:04 Raptor user.debug itudev.exe[5249]: [ITUDEV]^M src/main.c #0044 main::itudev_start() [0]
+<15> Aug  2 19:38:04 Raptor user.debug itudev.exe[5249]: [ITUDEV]^M src/vos2/itudev.cpp #0066 itudev_image_flush::path [/home/usr1/www/./misc/200720182012.png]
+<15> Aug  2 19:38:04 Raptor user.debug itudev.exe[5249]: [ITUDEV]^M src/vos2/itudev.cpp #0075 itudev_image_flush::vfigui::uiDraw() [OK]
+<15> Aug  2 19:38:14 Raptor user.debug itudev.exe[5249]: [ITUDEV]^M src/main.c #0053 main::itudev_image_flush() [0]
+<11> Aug  2 19:38:14 Raptor user.err itudev.exe[5249]: Buzzer_Close(6): isn't opened
+<14> Aug  2 19:38:14 Raptor user.info secins: [SI] Process(itudev.exe:5249:5131) normally terminated, rc=0

@@ -31,10 +31,10 @@ PROJECT_INC := \
 -I"include"
 
 BIN_DIR := \
-./lib/$(CFG_NAME)
+./lib/gtk/$(CFG_NAME)
 
 BUILD_DIR := \
-./lib/$(CFG_NAME)/build
+./lib/gtk/$(CFG_NAME)/build
 
 SRC_DIR := \
 ./src/gtk

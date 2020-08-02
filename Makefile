@@ -28,10 +28,10 @@ PROJECT_VERSION := \
 01.00.00
 
 BIN_DIR := \
-./bin/$(CFG_NAME)
+./bin/gtk/$(CFG_NAME)
 
 BUILD_DIR := \
-./build/$(CFG_NAME)
+./build/gtk/$(CFG_NAME)
 
 DEF := \
 -D_PROJECT_NAME_="\"$(PROJECT_NAME)\"" \
@@ -60,7 +60,7 @@ ITUDEV_VERSION := \
 01.00.00
 
 ITUDEV_DIR := \
-./lib/$(CFG_NAME)
+./lib/gtk/$(CFG_NAME)
 
 ITUDEV_INC := \
 -I"include"

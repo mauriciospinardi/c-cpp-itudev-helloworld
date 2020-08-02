@@ -1,7 +1,7 @@
 /**
  * @file itudev.h
  * @author Maurício Spinardi (mauricio.spinardi@setis.com.br)
- * @platform cygwin64
+ * @platform N/A
  * @brief Definição de espaço de nomes, classe e/ou interface.
  * @date 2020-07-20
  * 
@@ -51,8 +51,8 @@ itudev_start(void);
 /**
  * @description Canal de depuração da aplicação.
  * 
- * @param format autodescritivo
- * @param ... número variável de argumentos
+ * @param[in] format autodescritivo
+ * @param[in] ... número variável de argumentos
  */
 extern void
 itudev_log(const char *date, const char *time, const char *file, const int line, const char *function, const char *format, ...);

@@ -140,8 +140,8 @@ itudev_start(void)
 /**
  * @brief @ref itudev.h
  * 
- * @param format [in] autodescritivo
- * @param ... [in] número variável de argumentos
+ * @param[in] format autodescritivo
+ * @param[in] ... número variável de argumentos
  */
 extern void LIB_PUBLIC
 itudev_log(const char *date, const char *time, const char *file, const int line, const char *function, const char *format, ...)
@@ -194,8 +194,8 @@ itudev_log(const char *date, const char *time, const char *file, const int line,
 /**
  * @brief Cria nova janela e retoma o ponto de entrada da aplicação.
  * 
- * @param application [in] Identificador da aplicação
- * @param user_data [in] Dados privados
+ * @param[in] application Identificador da aplicação
+ * @param[in] user_data Dados privados
  */
 static void
 activate(GtkApplication *application, gpointer user_data)
@@ -212,9 +212,9 @@ activate(GtkApplication *application, gpointer user_data)
 /**
  * @brief Função de retorno para monitoramento de eventos.
  * 
- * @param event_box [in] GtkWidget
- * @param event [in] Evento
- * @param data [in] Dados privados
+ * @param[in] event_box GtkWidget
+ * @param[in] event Evento
+ * @param[in] data Dados privados
  * @return gboolean TRUE se o evento foi tratado; FALSE, caso contrário.
  */
 static gboolean
