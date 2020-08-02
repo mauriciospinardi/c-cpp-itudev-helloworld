@@ -11,13 +11,15 @@ ifndef ROOT_DIR
 $(error ROOT_DIR not defined!)
 endif
 
+.EXPORT_ALL_VARIABLES:
+
 ROOT_DIR := \
 $(subst \,/,$(ROOT_DIR))
 
 # Definições básicas
 
 CFG_NAME := \
-$(subst ,release,$(CFG_NAME))
+$(if $(CFG_NAME),$(CFG_NAME),release)
 
 PROJECT_NAME := \
 helloworld
@@ -26,10 +28,10 @@ PROJECT_VERSION := \
 01.00.00
 
 BIN_DIR := \
-bin/$(CFG_NAME)
+./bin/$(CFG_NAME)
 
 BUILD_DIR := \
-build/$(CFG_NAME)
+./build/$(CFG_NAME)
 
 DEF := \
 -D_PROJECT_NAME_="\"$(PROJECT_NAME)\"" \
@@ -58,7 +60,7 @@ ITUDEV_VERSION := \
 01.00.00
 
 ITUDEV_DIR := \
-lib/$(CFG_NAME)
+./lib/$(CFG_NAME)
 
 ITUDEV_INC := \
 -I"include"
@@ -138,8 +140,8 @@ $(BUILD_DIR)/%.cpp.o: src/%.cpp
 clean:
 	@echo Cleaning...
 	@$(MAKE) --no-print-directory -f GTK.mk clean
-	@rm -fr bin
-	@rm -fr build
+	@rm -fr ./bin
+	@rm -fr ./build
 
 .PHONY: prebuild
 prebuild:

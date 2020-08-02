@@ -11,13 +11,15 @@ ifndef ROOT_DIR
 $(error ROOT_DIR not defined!)
 endif
 
+.EXPORT_ALL_VARIABLES:
+
 ROOT_DIR := \
 $(subst \,/,$(ROOT_DIR))
 
 # Definições básicas
 
 CFG_NAME := \
-$(subst ,release,$(CFG_NAME))
+$(if $(CFG_NAME),$(CFG_NAME),release)
 
 PROJECT_NAME := \
 libitudev
@@ -25,14 +27,17 @@ libitudev
 PROJECT_VERSION := \
 01.00.00
 
+PROJECT_INC := \
+-I"include"
+
 BIN_DIR := \
-lib/$(CFG_NAME)
+./lib/$(CFG_NAME)
 
 BUILD_DIR := \
-lib/$(CFG_NAME)/build
+./lib/$(CFG_NAME)/build
 
 SRC_DIR := \
-src/gtk
+./src/gtk
 
 DEF := \
 -D_PROJECT_NAME_="\"$(PROJECT_NAME)\"" \
@@ -82,7 +87,7 @@ endif
 CFLAGS += \
 $(DEF) \
 $(GTK_INC) \
--I"include" \
+$(PROJECT_INC) \
 -Wall \
 -Wextra \
 -fPIC \
@@ -129,7 +134,7 @@ $(BUILD_DIR)/%.cpp.o: $(SRC_DIR)/%.cpp
 
 .PHONY: clean
 clean:
-	@rm -fr lib
+	@rm -fr ./lib
 
 .PHONY: prebuild
 prebuild:
