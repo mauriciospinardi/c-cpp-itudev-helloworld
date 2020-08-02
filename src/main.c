@@ -1,7 +1,7 @@
 /**
  * @file main.c
  * @author Maurício Spinardi (mauricio.spinardi@setis.com.br)
- * @platform cygwin64
+ * @platform N/A
  * @brief Ponto de entrada.
  * @date 2020-07-13
  * 
