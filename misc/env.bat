@@ -3,7 +3,7 @@
 REM 
 REM @file env.bat
 REM @author Maurício Spinardi (mauricio.spinardi@setis.com.br)
-REM @platform Verifone Engage V-OS2
+REM @platform cygwin64
 REM @brief Verifone Development Environment
 REM @date 2020-07-13
 REM 

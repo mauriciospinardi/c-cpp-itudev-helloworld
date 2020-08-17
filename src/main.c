@@ -25,8 +25,8 @@ static const char hello_world[] = "./misc/200720182012.png";
 /**
  * @brief Ponto de entrada.
  * 
- * @param [in] argc contador de argumentos
- * @param [in] argv vetor de argumentos
+ * @param[in] argc contador de argumentos
+ * @param[in] argv vetor de argumentos
  * 
  * @return EXIT_xxx
  * 
